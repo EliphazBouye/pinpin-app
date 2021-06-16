@@ -3,7 +3,16 @@ import'./style/Header.css'
 function Header() {
     return (
     <div className="HeaderContainer">
-        Header components
+        {/* search input */}
+        <div className="search__bar">
+            <input type="text" placeholder="Find new pin" />
+        </div>
+        {/* filter button */}
+        <div className="filter__btn">
+            
+        </div>
+        {/* add new pin button */}
+
     </div>
     )
 }
