@@ -5,9 +5,6 @@ import Feed from "./components/Feed";
 
 function App() {
 
-
-
-
   return (
     <div>
       <div className="flex w-full justify-between"> 
