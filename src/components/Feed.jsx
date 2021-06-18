@@ -1,13 +1,24 @@
+import { useState,useEffect } from 'react'
 import FeedItem from './FeedItem'
 import styled from 'styled-components'
 
 function Feed() {
+
+    const [photos, setPhotos] = useState([])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async () => {
+        const response = await fetch('https://api.unsplash.com/photos/?client_id=N3V-Cb7wQYyzHeRCf9DDRErmMur6s7aCwiBkFTHti_M')
+        const data = await response.json();
+        setPhotos(data)
+    },[])
+
     return (
     <FeedContainer>
+        {photos.map((photo) => {
+            <FeedItem user={'Samuel Bouye'} mode={'basic'} followers={450} image={photo.urls.regular} key={photo.id}/>
 
-            <FeedItem user={'Samuel Bouye'} mode={'basic'} followers={450} image={'https://images.unsplash.com/photo-1623850700406-c93c88697a28?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'}/>
-            <FeedItem user={'Samuel Bouye'} mode={'medium'} followers={450} image={'https://images.unsplash.com/photo-1606787619248-f301830a5a57?ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'}/>
-            <FeedItem user={'Samuel Bouye'} mode={'basic'} followers={450} image={'https://images.unsplash.com/photo-1623817208901-f489c61c8483?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'}/>
+        })}
             
     </FeedContainer>
     )
@@ -21,7 +32,7 @@ const FeedContainer = styled.div`
   display: block;
 }
     .FItem{
-        margin: 0;
+    margin: 0;
     display: grid;
     grid-template-rows: 1fr auto;
     margin-bottom: 10px;
