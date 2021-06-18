@@ -9,9 +9,11 @@ function App() {
     <div>
       <div className="flex w-full justify-between"> 
         <Menu />
-        <Header/>
+        <div className="flex w-full flex-col">
+          <Header/>
+          <Feed />
+        </div>
       </div>
-      <Feed />
     </div>
   );
 }
